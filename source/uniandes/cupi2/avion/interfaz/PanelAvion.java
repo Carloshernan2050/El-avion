@@ -137,4 +137,6 @@ public class PanelAvion extends JPanel
         }
         pPanel.setOpaque( false );
     }
+    
+
 }

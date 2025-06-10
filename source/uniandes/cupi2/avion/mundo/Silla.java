@@ -190,4 +190,14 @@ public class Silla
     {
         return pasajero;
     }
+    
+    /**
+     * Retorna una etiqueta con la información básica de la silla.
+     * @return Etiqueta con número, clase y ubicación.
+     */
+    public String darEtiqueta() {
+        return "Silla #" + numero + " - Clase: " + clase + ", Ubicación: " + ubicacion;
+    }
+
+
 }

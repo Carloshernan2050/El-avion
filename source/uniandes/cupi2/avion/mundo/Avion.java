@@ -328,14 +328,68 @@ public class Avion
     {
         return sillasEconomicas;
     }
+    
+    /**
+     * Retorna la clase que tiene mayor cantidad de sillas en la ventana ocupadas.
+     * Si ambas clases tienen la misma cantidad, retorna null.
+     * @return Clase con más sillas en ventana ocupadas o null si están iguales.
+     */
+    public Clase darClaseConMasSillasEnVentanaOcupadas() {
+        int ejecutivaVentanaOcupadas = 0;
+        int economicaVentanaOcupadas = 0;
 
+        // Contar sillas ejecutivas en ventana ocupadas
+        for (Silla silla : sillasEjecutivas) {
+            if (silla.darUbicacion() == Ubicacion.VENTANA && silla.sillaAsignada()) {
+                ejecutivaVentanaOcupadas++;
+            }
+        }
+
+        // Contar sillas económicas en ventana ocupadas
+        for (Silla silla : sillasEconomicas) {
+            if (silla.darUbicacion() == Ubicacion.VENTANA && silla.sillaAsignada()) {
+                economicaVentanaOcupadas++;
+            }
+        }
+
+        if (ejecutivaVentanaOcupadas > economicaVentanaOcupadas) {
+            return Clase.EJECUTIVA;
+        } else if (economicaVentanaOcupadas > ejecutivaVentanaOcupadas) {
+            return Clase.ECONOMICA;
+        } else {
+            return null; // Igual número de sillas ocupadas en ventana
+        }
+    }
+    
+    /**
+     * Retorna la primera silla libre en clase económica ubicada en la ventana.
+     * @return Silla libre en clase económica y en la ventana, o null si no hay disponible.
+     */
+    public Silla darSillaEconomicaLibreEnVentana() {
+        for (Silla silla : sillasEconomicas) {
+            if (!silla.sillaAsignada() && silla.darUbicacion() == Ubicacion.VENTANA) {
+                return silla;
+            }
+        }
+        return null;
+    }
+
+    
+   
     /**
      * Método para la extensión 1.
      * @return Respuesta 1.
      */
-    public String metodo1( )
-    {
-        return "Respuesta 1";
+    public String metodo1() {
+        Clase claseConMasSillasVentana = darClaseConMasSillasEnVentanaOcupadas();
+
+        if (claseConMasSillasVentana == Clase.EJECUTIVA) {
+            return "Hay más sillas ocupadas ubicadas en la ventana en la clase ejecutiva.";
+        } else if (claseConMasSillasVentana == Clase.ECONOMICA) {
+            return "Hay más sillas ocupadas ubicadas en la ventana en la clase económica.";
+        } else {
+            return "Hay una cantidad igual de sillas ocupadas en la ventana.";
+        }
     }
 
     /**

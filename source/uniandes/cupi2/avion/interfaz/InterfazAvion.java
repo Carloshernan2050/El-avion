@@ -165,6 +165,19 @@ public class InterfazAvion extends JFrame
 
         }
     }
+    
+    /**
+     * Muestra la primera silla económica libre en ventana.
+     */
+    public void reqMostrarSillaEnVentana() {
+        Silla silla = avion.darSillaEconomicaLibreEnVentana();
+
+        if (silla != null) {
+            JOptionPane.showMessageDialog(this, "Silla económica libre en ventana: " + silla.darEtiqueta());
+        } else {
+            JOptionPane.showMessageDialog(this, "No hay sillas económicas libres en ventana.");
+        }
+    }
 
     /**
      * Repinta la gráfica del avión.
